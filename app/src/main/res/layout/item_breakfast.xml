@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingLeft="16dp"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        tools:text="黑米粥" />
+
+
+    <TextView
+        android:id="@+id/times"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        tools:text="3" />
+
+
+
+    <TextView
+        android:id="@+id/last_time"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        tools:text="6/29 10:54" />
+
+</LinearLayout>
