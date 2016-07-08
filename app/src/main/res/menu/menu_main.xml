@@ -6,4 +6,10 @@
         android:orderInCategory="100"
         android:title="早餐"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/fruit"
+        android:orderInCategory="101"
+        android:title="水果"
+        app:showAsAction="never" />
 </menu>
