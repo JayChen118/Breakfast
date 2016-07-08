@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         DEFAULT_MAP.put(FRUIT, DEFAULT_FRUIT_LIST);
     }
 
-    List<Food> list = getDefaultFoodList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,42 +45,38 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        FrameLayout layout = (FrameLayout) findViewById(R.id.container);
-
         PreferenceUtil.setup(this);
 
-        List<Food> storeList = PreferenceUtil.getBreakfastList();
-        if (!ListUtils.isEmpty(storeList) && storeList.size() == list.size()) {
-            list = storeList;
-        } else {
-            PreferenceUtil.setBreakfastList(list);
-        }
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("list", new ArrayList<Parcelable>(list));
-        FoodFragment foodFragment = new FoodFragment();
-        foodFragment.setArguments(bundle);
-
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.container, foodFragment);
-        transaction.commit();
-
+        resetFragment(BREAKFAST);
     }
 
-    private List<Food> getDefaultFoodList() {
+    private List<Food> getDefaultFoodList(String type) {
         List<Food> result = new ArrayList<>();
-        for (String name : DEFAULT_BREAKFAST_LIST) {
-            Food food = new Food(name);
-            result.add(food);
+        String[] list = DEFAULT_MAP.get(type);
+        if (list != null) {
+            for (String name : list) {
+                Food food = new Food(name);
+                result.add(food);
+            }
         }
         return result;
     }
 
     private void resetFragment(String type) {
 
+        List<Food> list = getDefaultFoodList(type);
+
+        List<Food> storeList = PreferenceUtil.getFoodList(type);
+        if (!ListUtils.isEmpty(storeList) && storeList.size() == list.size()) {
+            list = storeList;
+        } else {
+            PreferenceUtil.setFoodList(list, type);
+        }
+
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("list", new ArrayList<Parcelable>());
+        bundle.putString("type", type);
+        bundle.putParcelableArrayList("list", new ArrayList<Parcelable>(list));
+
         FoodFragment foodFragment = new FoodFragment();
         foodFragment.setArguments(bundle);
 
@@ -102,9 +98,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.breakfast: {
                 resetFragment(BREAKFAST);
+                break;
             }
             case R.id.fruit: {
                 resetFragment(FRUIT);
+                break;
             }
         }
 

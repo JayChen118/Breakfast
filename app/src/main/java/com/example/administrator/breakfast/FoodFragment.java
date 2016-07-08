@@ -23,6 +23,7 @@ import java.util.List;
 public class FoodFragment extends Fragment {
 
     private List<Food> list;
+    private String type;
 
     @Nullable
     @Override
@@ -45,6 +46,7 @@ public class FoodFragment extends Fragment {
         Log.d("Jay", "FoodFragment onActivityCreated");
 
         list = getArguments().getParcelableArrayList("list");
+        type = getArguments().getString("type");
         View view = getView();
 
         if (view != null) {
@@ -95,7 +97,7 @@ public class FoodFragment extends Fragment {
                     food.setLastTime(TimeUtils.getTime());
                     list.add(list.size(), food);
                     adapter.notifyDataSetChanged();
-                    PreferenceUtil.setBreakfastList(list);
+                    PreferenceUtil.setFoodList(list, type);
                 }
             });
         }

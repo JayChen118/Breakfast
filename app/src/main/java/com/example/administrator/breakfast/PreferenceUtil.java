@@ -15,13 +15,15 @@ public class PreferenceUtil {
 
     static String KEY_BREAKFAST_LIST = "breakfast_list";
 
+    static String LIST_SUFFIX = "_list";
+
     private static SharedPreferences preferences;
 
     public static void setup(Context context) {
         preferences = context.getSharedPreferences("breakfast", Context.MODE_PRIVATE);
     }
 
-    public static List<Food> getBreakfastList(){
+    public static List<Food> getBreakfastList() {
 
         String string = preferences.getString(KEY_BREAKFAST_LIST, null);
 
@@ -31,6 +33,24 @@ public class PreferenceUtil {
             return GsonUtil.fromJson(string, token.getType());
         }
         return null;
+    }
+
+    public static List<Food> getFoodList(String type) {
+
+        String string = preferences.getString(type + LIST_SUFFIX, null);
+
+        if (!TextUtils.isEmpty(string)) {
+            TypeToken<List<Food>> token = new TypeToken<List<Food>>() {
+            };
+            return GsonUtil.fromJson(string, token.getType());
+        }
+        return null;
+    }
+
+    public static void setFoodList(List<Food> list, String type) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(type + LIST_SUFFIX, GsonUtil.toJson(list));
+        editor.apply();
     }
 
     public static void setBreakfastList(List<Food> list) {
