@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class PreferenceUtil {
 
+    private static final String DATA_HAS_SET = "data_has_set";
     static String KEY_BREAKFAST_LIST = "breakfast_list";
 
     static String LIST_SUFFIX = "_list";
@@ -56,6 +57,16 @@ public class PreferenceUtil {
     public static void setBreakfastList(List<Food> list) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(KEY_BREAKFAST_LIST, GsonUtil.toJson(list));
+        editor.apply();
+    }
+
+    public static boolean hasData() {
+        return preferences.getBoolean(DATA_HAS_SET, false);
+    }
+
+    public static void setDataSettingFlag() {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(DATA_HAS_SET, true);
         editor.apply();
     }
 }
