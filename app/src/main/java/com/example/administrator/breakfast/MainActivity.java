@@ -25,14 +25,16 @@ public class MainActivity extends BaseActivity {
 
     public static final String BREAKFAST = "breakfast";
 
-    public static final String SOUP = "soup";
-
     public static final String FRUIT = "fruit";
+
+    public static final String SOUP = "soup";
 
 
     public static final String[] DEFAULT_BREAKFAST_LIST = {"黑米粥", "豆浆+包点", "牛奶", "玉米粥", "小米粥"};
 
     public static final String[] DEFAULT_FRUIT_LIST = {"苹果", "火龙果", "梨", "桃子", "葡萄"};
+
+    public static final String[] DEFAULT_SOUP_LIST = {"白萝卜炖排骨", "香菇乌鸡", "银耳莲子", "雪梨冰糖"};
 
     public static final Map<String, String[]> DEFAULT_MAP = new HashMap<>();
 
@@ -41,9 +43,11 @@ public class MainActivity extends BaseActivity {
     static {
         DEFAULT_MAP.put(BREAKFAST, DEFAULT_BREAKFAST_LIST);
         DEFAULT_MAP.put(FRUIT, DEFAULT_FRUIT_LIST);
+        DEFAULT_MAP.put(SOUP, DEFAULT_SOUP_LIST);
 
         TITLE_MAP.put(BREAKFAST, "早餐");
         TITLE_MAP.put(FRUIT, "水果");
+        TITLE_MAP.put(SOUP, "炖汤");
 
     }
 
@@ -61,7 +65,7 @@ public class MainActivity extends BaseActivity {
         PreferenceUtil.setup(this);
 
 //        if (PreferenceUtil.hasData()) {
-            resetFragment(BREAKFAST);
+        resetFragment(BREAKFAST);
 //        } else {
 //            openDataInitialPage();
 //        }
@@ -130,6 +134,10 @@ public class MainActivity extends BaseActivity {
             }
             case R.id.fruit: {
                 resetFragment(FRUIT);
+                break;
+            }
+            case R.id.soup: {
+                resetFragment(SOUP);
                 break;
             }
         }

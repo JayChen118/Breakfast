@@ -2,15 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingLeft="16dp"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         tools:text="黑米粥" />
 
@@ -18,19 +20,18 @@
     <TextView
         android:id="@+id/times"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
         android:gravity="center_vertical"
         tools:text="3" />
 
 
-
     <TextView
         android:id="@+id/last_time"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_width="60dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
         android:gravity="center_vertical"
-        tools:text="6/29 10:54" />
+        tools:text="6天前" />
 
 </LinearLayout>
