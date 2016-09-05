@@ -1,7 +1,9 @@
-package com.example.administrator.breakfast;
+package com.example.administrator.breakfast.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.example.administrator.breakfast.utils.TimeUtils;
 
 /**
  * Created by Jay on 2016/6/29.

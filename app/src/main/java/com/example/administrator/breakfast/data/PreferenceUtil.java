@@ -1,9 +1,11 @@
-package com.example.administrator.breakfast;
+package com.example.administrator.breakfast.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.example.administrator.breakfast.utils.GsonUtil;
+import com.example.administrator.breakfast.data.model.Food;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;

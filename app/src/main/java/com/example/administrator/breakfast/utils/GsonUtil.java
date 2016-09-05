@@ -1,4 +1,4 @@
-package com.example.administrator.breakfast;
+package com.example.administrator.breakfast.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

@@ -1,4 +1,4 @@
-package com.example.administrator.breakfast;
+package com.example.administrator.breakfast.presentation.base;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;

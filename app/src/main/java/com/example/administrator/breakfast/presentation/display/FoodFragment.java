@@ -1,18 +1,21 @@
-package com.example.administrator.breakfast;
+package com.example.administrator.breakfast.presentation.display;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.administrator.breakfast.R;
+import com.example.administrator.breakfast.data.PreferenceUtil;
+import com.example.administrator.breakfast.data.model.Food;
+import com.example.administrator.breakfast.utils.TimeUtils;
 
 import java.util.List;
 
