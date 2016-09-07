@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.breakfast.R;
-import com.example.administrator.breakfast.data.PreferenceUtil;
+import com.example.administrator.breakfast.utils.PreferenceUtil;
 import com.example.administrator.breakfast.data.model.Food;
 import com.example.administrator.breakfast.utils.TimeUtils;
 
@@ -27,6 +27,8 @@ public class FoodFragment extends Fragment {
 
     private List<Food> list;
     private String type;
+
+    private FoodDisplayContract.Presenter foodDisplayPresenter;
 
     @Nullable
     @Override
@@ -95,16 +97,17 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Food food = list.get(position);
-                    list.remove(food);
-                    food.addTimes();
-                    food.setLastTime(TimeUtils.getTime());
-                    list.add(list.size(), food);
+                    if (foodDisplayPresenter != null) {
+                        list = foodDisplayPresenter.clickFood(food, list);
+                    }
                     adapter.notifyDataSetChanged();
-                    PreferenceUtil.setFoodList(list, type);
                 }
             });
         }
 
     }
 
+    public void setFoodDisplayPresenter(FoodDisplayContract.Presenter foodDisplayPresenter) {
+        this.foodDisplayPresenter = foodDisplayPresenter;
+    }
 }

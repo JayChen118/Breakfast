@@ -10,18 +10,27 @@ import com.example.administrator.breakfast.utils.TimeUtils;
  */
 public class Food implements Parcelable {
 
+    public static final String BREAKFAST = "breakfast";
+
+    public static final String FRUIT = "fruit";
+
+    public static final String SOUP = "soup";
+
+    private final String type;
+
     private final String name;
 
     private int times;
 
     private long lastTime;
 
-
-    public Food(String name) {
+    public Food(String type, String name) {
+        this.type = type;
         this.name = name;
     }
 
     protected Food(Parcel in) {
+        type = in.readString();
         name = in.readString();
         times = in.readInt();
         lastTime = in.readLong();
@@ -90,5 +99,9 @@ public class Food implements Parcelable {
 
     public void addTimes() {
         times++;
+    }
+
+    public String getType() {
+        return type;
     }
 }
