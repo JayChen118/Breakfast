@@ -16,6 +16,7 @@ import static com.example.administrator.breakfast.data.model.Food.SOUP;
 
 public interface FoodRepository {
 
+    public String LIST_SUFFIX = "_list";
 
     List<Food> getFoodList(String type);
 

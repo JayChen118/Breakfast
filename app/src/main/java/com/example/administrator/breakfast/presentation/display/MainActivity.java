@@ -18,6 +18,7 @@ import com.example.administrator.breakfast.data.FoodRepositoryImpl;
 import com.example.administrator.breakfast.data.model.Food;
 import com.example.administrator.breakfast.data.model.FoodList;
 import com.example.administrator.breakfast.presentation.base.BaseActivity;
+import com.example.administrator.breakfast.utils.PreferenceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class MainActivity extends BaseActivity implements FoodDisplayContract.Vi
 
         setContentView(R.layout.activity_main);
 
-        foodDisplayPresenter = new FoodDisplayPresenter(new FoodRepositoryImpl());
+        foodDisplayPresenter = new FoodDisplayPresenter(new FoodRepositoryImpl(new PreferenceUtil()));
         foodDisplayPresenter.attachView(this);
 
         foodDisplayPresenter.display();

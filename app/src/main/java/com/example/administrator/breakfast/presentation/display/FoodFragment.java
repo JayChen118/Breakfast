@@ -13,9 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.breakfast.R;
-import com.example.administrator.breakfast.utils.PreferenceUtil;
 import com.example.administrator.breakfast.data.model.Food;
-import com.example.administrator.breakfast.utils.TimeUtils;
 
 import java.util.List;
 

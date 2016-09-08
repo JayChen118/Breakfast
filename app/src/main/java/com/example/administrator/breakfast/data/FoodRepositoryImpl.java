@@ -1,10 +1,9 @@
 package com.example.administrator.breakfast.data;
 
-import android.text.TextUtils;
-
 import com.example.administrator.breakfast.data.model.Food;
+import com.example.administrator.breakfast.data.store.StringStore;
 import com.example.administrator.breakfast.utils.GsonUtil;
-import com.example.administrator.breakfast.utils.PreferenceUtil;
+import com.example.administrator.breakfast.utils.StringUtils;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import static com.example.administrator.breakfast.data.model.Food.SOUP;
 
 public class FoodRepositoryImpl implements FoodRepository {
 
-    String LIST_SUFFIX = "_list";
 
     public static final String[] DEFAULT_BREAKFAST_LIST = {"黑米粥", "豆浆+包点", "牛奶", "玉米粥", "小米粥"};
 
@@ -38,12 +36,18 @@ public class FoodRepositoryImpl implements FoodRepository {
         DEFAULT_MAP.put(SOUP, DEFAULT_SOUP_LIST);
     }
 
+    private StringStore store;
+
+    public FoodRepositoryImpl(StringStore store) {
+        this.store = store;
+    }
+
     @Override
     public List<Food> getFoodList(String type) {
 
-        String string = PreferenceUtil.getString(type + LIST_SUFFIX);
+        String string = store.getString(type + LIST_SUFFIX);
 
-        if (!TextUtils.isEmpty(string)) {
+        if (!StringUtils.isEmpty(string)) {
             TypeToken<List<Food>> token = new TypeToken<List<Food>>() {
             };
             return GsonUtil.fromJson(string, token.getType());
@@ -53,7 +57,7 @@ public class FoodRepositoryImpl implements FoodRepository {
 
     @Override
     public void setFoodList(List<Food> list, String type) {
-        PreferenceUtil.setString(type + LIST_SUFFIX, GsonUtil.toJson(list));
+        store.setString(type + LIST_SUFFIX, GsonUtil.toJson(list));
     }
 
     @Override
